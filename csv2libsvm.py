@@ -29,7 +29,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument( "input_file", help = "path to the CSV input file" )
 parser.add_argument( "output_file", help = "path to the output file" )
 
-parser.add_argument( "-l", "--label-index", help = "zero based index for the label column. If there are no labels in the file, use -1.",
+parser.add_argument( "-l", "--label-index", help = "zero based index for the label column. Use -1 for the last column. If there are no labels in the file, use -2.",
 					 type = int, default = 0 )
 
 parser.add_argument( "-s", "--skip-headers", help = "Use this switch if there are headers in the input file.", action = 'store_true' )
@@ -46,7 +46,7 @@ if args.skip_headers:
 	headers = reader.next()
 
 for line in reader:
-	if args.label_index == -1:
+	if args.label_index == -2:
 		label = "1"
 	else:
 		label = line.pop( args.label_index )
